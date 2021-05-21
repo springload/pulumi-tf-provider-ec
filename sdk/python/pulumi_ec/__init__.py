@@ -3,7 +3,16 @@
 # *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 # Export this package's modules as members:
+from .ec_deployment import *
+from .ec_deployment_extension import *
+from .ec_deployment_traffic_filter import *
+from .ec_deployment_traffic_filter_association import *
+from .get_ec_deployment import *
+from .get_ec_deployments import *
+from .get_ec_stack import *
 from .provider import *
+from ._inputs import *
+from . import outputs
 
 # Make subpackages available:
 from . import (
@@ -13,6 +22,32 @@ from . import (
 def _register_module():
     import pulumi
     from . import _utilities
+
+
+    class Module(pulumi.runtime.ResourceModule):
+        _version = _utilities.get_semver_version()
+
+        def version(self):
+            return Module._version
+
+        def construct(self, name: str, typ: str, urn: str) -> pulumi.Resource:
+            if typ == "ec:index/eCDeployment:ECDeployment":
+                return ECDeployment(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "ec:index/eCDeploymentExtension:ECDeploymentExtension":
+                return ECDeploymentExtension(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "ec:index/eCDeploymentTrafficFilter:ECDeploymentTrafficFilter":
+                return ECDeploymentTrafficFilter(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "ec:index/eCDeploymentTrafficFilterAssociation:ECDeploymentTrafficFilterAssociation":
+                return ECDeploymentTrafficFilterAssociation(name, pulumi.ResourceOptions(urn=urn))
+            else:
+                raise Exception(f"unknown resource type {typ}")
+
+
+    _module_instance = Module()
+    pulumi.runtime.register_resource_module("ec", "index/eCDeployment", _module_instance)
+    pulumi.runtime.register_resource_module("ec", "index/eCDeploymentExtension", _module_instance)
+    pulumi.runtime.register_resource_module("ec", "index/eCDeploymentTrafficFilter", _module_instance)
+    pulumi.runtime.register_resource_module("ec", "index/eCDeploymentTrafficFilterAssociation", _module_instance)
 
 
     class Package(pulumi.runtime.ResourcePackage):

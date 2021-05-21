@@ -5,14 +5,51 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export * from "./ecdeployment";
+export * from "./ecdeploymentExtension";
+export * from "./ecdeploymentTrafficFilter";
+export * from "./ecdeploymentTrafficFilterAssociation";
+export * from "./getECDeployment";
+export * from "./getECDeployments";
+export * from "./getECStack";
 export * from "./provider";
 
 // Export sub-modules:
 import * as config from "./config";
+import * as types from "./types";
 
 export {
     config,
+    types,
 };
+
+// Import resources to register:
+import { ECDeployment } from "./ecdeployment";
+import { ECDeploymentExtension } from "./ecdeploymentExtension";
+import { ECDeploymentTrafficFilter } from "./ecdeploymentTrafficFilter";
+import { ECDeploymentTrafficFilterAssociation } from "./ecdeploymentTrafficFilterAssociation";
+
+const _module = {
+    version: utilities.getVersion(),
+    construct: (name: string, type: string, urn: string): pulumi.Resource => {
+        switch (type) {
+            case "ec:index/eCDeployment:ECDeployment":
+                return new ECDeployment(name, <any>undefined, { urn })
+            case "ec:index/eCDeploymentExtension:ECDeploymentExtension":
+                return new ECDeploymentExtension(name, <any>undefined, { urn })
+            case "ec:index/eCDeploymentTrafficFilter:ECDeploymentTrafficFilter":
+                return new ECDeploymentTrafficFilter(name, <any>undefined, { urn })
+            case "ec:index/eCDeploymentTrafficFilterAssociation:ECDeploymentTrafficFilterAssociation":
+                return new ECDeploymentTrafficFilterAssociation(name, <any>undefined, { urn })
+            default:
+                throw new Error(`unknown resource type ${type}`);
+        }
+    },
+};
+pulumi.runtime.registerResourceModule("ec", "index/eCDeployment", _module)
+pulumi.runtime.registerResourceModule("ec", "index/eCDeploymentExtension", _module)
+pulumi.runtime.registerResourceModule("ec", "index/eCDeploymentTrafficFilter", _module)
+pulumi.runtime.registerResourceModule("ec", "index/eCDeploymentTrafficFilterAssociation", _module)
 
 import { Provider } from "./provider";
 
