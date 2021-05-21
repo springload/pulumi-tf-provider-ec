@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-ec/sdk
+module github.com/springload/pulumi-tf-provider-ec/sdk
 
 go 1.14
 

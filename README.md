@@ -68,7 +68,7 @@ To use from Python, install using `pip`:
 
 To use from Go, use `go get` to grab the latest version of the library
 
-    $ go get github.com/pulumi/pulumi-ec/sdk/go/...
+    $ go get github.com/springload/pulumi-tf-provider-ec/sdk/go/...
 
 ## Configuration
 

@@ -19,14 +19,13 @@ import (
 	"path/filepath"
 	"unicode"
 
-	"github.com/pulumi/pulumi-ec/provider/pkg/version"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	terraform_ec "github.com/elastic/terraform-provider-ec/ec"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
-	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v1"
+	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/terraform-providers/terraform-provider-ec/ec"
+	"github.com/springload/pulumi-tf-provider-ec/provider/pkg/version"
 )
 
 // all of the token components used below.
@@ -91,7 +90,7 @@ var managedByPulumi = &tfbridge.DefaultInfo{Value: "Managed by Pulumi"}
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv1.NewProvider(ec.Provider().(*schema.Provider))
+	p := shimv2.NewProvider(terraform_ec.Provider())
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
@@ -101,7 +100,7 @@ func Provider() tfbridge.ProviderInfo {
 		Keywords:    []string{"pulumi", "ec"},
 		License:     "Apache-2.0",
 		Homepage:    "https://pulumi.io",
-		Repository:  "https://github.com/pulumi/pulumi-ec",
+		Repository:  "https://github.com/springload/pulumi-tf-provider-ec",
 		Config:      map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.

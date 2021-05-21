@@ -1,3 +1,3 @@
-module github.com/pulumi/pulumi-ec/examples
+module github.com/springload/pulumi-tf-provider-ec/examples
 
 go 1.16
