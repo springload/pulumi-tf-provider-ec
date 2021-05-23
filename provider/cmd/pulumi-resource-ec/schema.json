@@ -9,6 +9,7 @@
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`ec` Terraform Provider](https://github.com/terraform-providers/terraform-provider-ec).",
     "repository": "https://github.com/springload/pulumi-tf-provider-ec",
+    "pluginDownloadURL": "https://github.com/springload/pulumi-tf-provider-ec/releases/download/0.1.2-alpha.1621804950+e1827ea3.dirty",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
     },

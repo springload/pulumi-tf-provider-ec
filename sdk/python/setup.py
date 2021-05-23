@@ -12,7 +12,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'ec', '${PLUGIN_VERSION}'])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'ec', '${PLUGIN_VERSION}', '--server', 'https://github.com/springload/pulumi-tf-provider-ec/releases/download/0.1.2-alpha.1621804950+e1827ea3.dirty'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print("""

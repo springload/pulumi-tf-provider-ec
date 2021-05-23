@@ -171,6 +171,8 @@ func Provider() tfbridge.ProviderInfo {
 				"System.Collections.Immutable": "1.6.0",
 			},
 		},
+		// custom server to download the provider from Github releases
+		PluginDownloadURL: fmt.Sprintf("https://github.com/springload/pulumi-tf-provider-ec/releases/download/%s", version.Version),
 	}
 
 	prov.SetAutonaming(255, "-")

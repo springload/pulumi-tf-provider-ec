@@ -4,6 +4,7 @@ archives:
 before:
   hooks:
   - make tfgen
+  - make build_sdks
 builds:
 - binary: pulumi-resource-ec
   dir: provider
@@ -24,5 +25,7 @@ changelog:
   skip: true
 release:
   disable: false
+  extra_files:
+    - glob: sdk/python/bin/dist/pulumi_ec-*.tar.gz
 snapshot:
   name_template: '{{ .Tag }}-SNAPSHOT'
