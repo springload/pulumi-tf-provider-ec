@@ -21,6 +21,6 @@
     },
     "pulumi": {
         "resource": true,
-        "pluginDownloadURL": "https://github.com/springload/pulumi-tf-provider-ec/releases/download/0.1.2-alpha.1621804950+e1827ea3.dirty"
+        "pluginDownloadURL": "https://github.com/springload/pulumi-tf-provider-ec/releases/download/0.1.1+dirty"
     }
 }
