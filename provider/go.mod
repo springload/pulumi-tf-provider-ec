@@ -8,7 +8,7 @@ replace (
 )
 
 require (
-	github.com/elastic/terraform-provider-ec v0.2.1
+	github.com/elastic/terraform-provider-ec v0.3.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.1.0
 	github.com/pulumi/pulumi/sdk/v3 v3.0.0
 )
